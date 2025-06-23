@@ -351,4 +351,4 @@ class Book {
 
 // import
 // import {function_name} from "./file_name"
-// the ./ = current directory
+// the ./ = current directoryG
