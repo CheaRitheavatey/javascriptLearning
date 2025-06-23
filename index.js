@@ -138,3 +138,77 @@ function checkObj(checkprop) {
 
     
 }
+
+// let, const and var
+// for var: you can declare it more than one time 
+// example,
+// var catName = "quincy";
+// var catName = "joe";
+// but let wont let you initalize it twice
+
+var catNmae = "quincy";
+var catNmae = "je";
+
+var global = "var declare globally";
+let l = "only in a block of expression that we put it in";
+
+// example
+function checkScope() {
+    "use strict";
+
+    var i = "function scope";
+    if (true) {
+        i = "block scope";
+        console.log("Block scope i is: " + i); // output: block scope
+    }
+
+    console.log("Function scope i is: " + i); // output: block scope
+    return i;
+}
+
+checkScope();
+function checkScope1() {
+    "use strict";
+
+    let i = "function scope";
+    if (true) {
+        let i = "block scope";
+        console.log("Block scope i is: " + i); // output: block scope
+    }
+
+    console.log("Function scope i is: " + i); // output: block scope
+    return i;
+}
+
+checkScope1();
+
+// const = same as let but read only aka cannot reassign it afterward
+// const = final keyword in java
+// let = is the normal that we use 
+
+
+const s = [5,7,2]; // this is final we cannot modify it but we can mutate it to a different number like this
+function editInPlace() {
+    "use strict";
+
+    // s = [2,5,7] we cannot do like this because its const
+    // but we can do this
+    s[0] = 2;
+    s[1] = 5;
+    s[7] = 7; // output: s = [2,5,7]
+}
+
+// so we know that using const cannot protect it from changing 
+// thats why we can use Object.freeze(whatever_you_dont_want_to_change);
+
+// example
+const MATH_CONSTANT = {PI: 3.14};
+Object.freeze(MATH_CONSTANT);
+
+// Anyonomous function
+var magic = function(arr1, arr2) {
+    return arr1.concat(arr2);
+}; // if we have this kind of function we can convert it to an arrow function like below
+
+
+var magic = (arr1, arr2) => arr1.concat(arr2); // if we return only 1 thing
