@@ -212,3 +212,139 @@ var magic = function(arr1, arr2) {
 
 
 var magic = (arr1, arr2) => arr1.concat(arr2); // if we return only 1 thing
+
+// rest operator = take a lot of argument using ...
+
+// destructure assignment
+var voxel ={
+    x: 3.6,
+    y: 7.4,
+    z: 6.54
+}
+
+// if we want to access individual we have to do this
+var x = voxel.x;
+var y = voxel.y;
+var z = voxel.z;
+
+// but now with destructing we can do this
+const {
+    x: j,
+    y: k,
+    z: p
+} = voxel;
+
+const AVG_TEMPERATURES = {
+    today: 77.5,
+    tomorrow: 79
+}
+
+function getTempOfTmr(avgTempertures) {
+    "use strict"
+
+    const {tomorrow: tempOfTomorrow} = avgTempertures;
+    return tempOfTomorrow;
+}
+
+console.log(getTempOfTmr(AVG_TEMPERATURES));
+
+
+// nested object
+const LOCAL_FORECAST = {
+    today: {min : 72, max: 84.6},
+    tomorrow: {min: 73.3, max: 84.6}
+};
+
+function getMaxOfTmr(forecast) {
+    "use strict"
+
+    const {tomorrow : {max: maxTmr}} = forecast;
+    return maxTmr;
+}
+console.log(getMaxOfTmr(LOCAL_FORECAST));
+
+// use destructuring assignment to assign variable from array
+const [z, x] = [1,2,3,4,5,6]; // z = 1, x = 2 because it will go in order but if we want to access 4 we need to add ,
+const [z,x, ,y] = [1,2,3,4,5,6];
+// console.log(z,x);
+
+// can also swtich place between 2 number
+let a =8, b = 6;
+(() => {
+    "use strict";
+    [a,b] = [b,a]
+}) (); // output: a = 6, b = 8
+
+// exercise: remove the first 2 element
+const source = [1,2,3,4,5,6,7,8,9,10];
+function removeFirstTwo(list) {
+    const [, , ...arr] = list
+    return arr;
+}
+
+// ((list) => {
+//     "use strict"
+//     const [, , ...arr] = list;
+//     return arr;
+    
+// })
+
+
+// template literal `` (advantage: can use "" or '' and we put in the next line can put variable right in the string)
+const person = {
+    name: "zack",
+    age: 34
+};
+const greeting = `Hello, my name is ${person.name}! 
+I am ${person.age} year old.`;
+
+console.log(greeting);
+
+// exercise create a list based on array that pass in
+const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["id-blacklist", "no-dup-keys"]
+};
+
+function makeList(arr) {
+    const resultDisplayArray = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        resultDisplayArray.push(`<li class="text-warning"> ${arr[i]} </li`);
+    }
+
+    return resultDisplayArray;
+}
+
+console.log(makeList(result));
+
+// class
+// old way:
+var SpaceShuttle = function(targetPlanet) {
+    this.targetPlanet = targetPlanet;
+}
+
+var zeus = new SpaceShuttle('Jupiter');
+console.log(zeus.targetPlanet);
+
+
+
+// new way
+class SpaceShuttle {
+    //constructor
+    constructor(targetPlanet) {this.targetPlanet = targetPlanet}
+}
+var zeus = new SpaceShuttle('Jupiter');
+console.log(zeus.targetPlanet);
+
+// getter setter
+class Book {
+    constructor(author) {this.author = author;}
+
+    // getter
+    get writer() {return this._author;} // ._ = private
+
+    // setter
+    set writer(updatedAuthor) {this._author = updatedAuthor;}
+}
