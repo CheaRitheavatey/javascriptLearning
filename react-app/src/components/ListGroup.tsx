@@ -1,3 +1,5 @@
+import type React from "react";
+
 function ListGroup() {
   let items = ["New York", "San Fransisco", "Paris", "London"];
   // items = [];
@@ -7,6 +9,10 @@ function ListGroup() {
   const getMessage = () => {
     return items.length === 0 ? <p>No item found</p> : null;
   };
+
+  // event handling
+  const handleClick = (event: React.MouseEvent<HTMLElement>) =>
+    console.log(event);
   return (
     // componenet, so it cannot return more than 1 componenet
     // so solve this problem we can put everything in div
@@ -17,10 +23,16 @@ function ListGroup() {
     <>
       <h1>List Group</h1>
       {items.length === 0 && <p>No item found</p>}
-      {}
       <ul className="list-group">
-        {items.map((items) => (
-          <li className="list-group-item">{items}</li>
+        {items.map((items, index) => (
+          <li
+            className="list-group-item"
+            key={items}
+            // onClick={(event) => console.log(items, index, event)}
+            onClick={handleClick}
+          >
+            {items}
+          </li>
         ))}
         <li className="list-group-item active" aria-current="true">
           An active item
