@@ -348,3 +348,7 @@ class Book {
     // setter
     set writer(updatedAuthor) {this._author = updatedAuthor;}
 }
+
+// import
+// import {function_name} from "./file_name"
+// the ./ = current directory
