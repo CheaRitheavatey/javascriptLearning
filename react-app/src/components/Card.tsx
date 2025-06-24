@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 interface Item {
   name: string;
   category: string;
