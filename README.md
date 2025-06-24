@@ -33,3 +33,17 @@ git commit -m "Add react-app project as regular directory"
 # Step 5: Push
 
 git push
+
+prop vs state
+
+- prop:
+  input passed to a component
+  similar to function args
+  immutable (aka const)
+
+- state:
+  data managed by a component
+  similar to local variable
+  mutable
+
+- passing children
