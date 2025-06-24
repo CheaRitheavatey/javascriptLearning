@@ -1,9 +1,16 @@
 import logo from "../img/logo.png";
 interface Props {
   categories: string[];
+  searchQuery: string;
   onCategorySelect: (category: string) => void;
+  onSearch: (query: string) => void;
 }
-const NavBar = ({ categories, onCategorySelect }: Props) => {
+const NavBar = ({
+  categories,
+  onCategorySelect,
+  searchQuery,
+  onSearch,
+}: Props) => {
   return (
     <>
       <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -23,6 +30,7 @@ const NavBar = ({ categories, onCategorySelect }: Props) => {
             <img
               src={logo}
               alt="CTC Logo"
+              className="w-24 h-auto"
               style={{ width: "250px", height: "auto" }}
             />
           </a>
@@ -65,12 +73,18 @@ const NavBar = ({ categories, onCategorySelect }: Props) => {
               </li>
             </ul>
 
-            <form className="d-flex" role="search">
+            <form
+              className="d-flex"
+              role="search"
+              onSubmit={(e) => e.preventDefault()}
+            >
               <input
                 className="form-control me-2"
                 type="search"
                 placeholder="Search"
                 aria-label="Search"
+                value={searchQuery}
+                onChange={(e) => onSearch(e.target.value)}
               />
               <button className="btn btn-outline-success" type="submit">
                 Search

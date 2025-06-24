@@ -30,9 +30,20 @@ function App() {
   const [alertvisible, setAlertVisible] = useState(false);
   const [selectCategory, setSelectCategory] = useState<string | null>(null);
   const categories = Array.from(new Set(items.map((item) => item.category)));
-  const filteredItems = selectCategory
-    ? items.filter((item) => item.category === selectCategory)
-    : items;
+  // const filteredItems = selectCategory
+  //   ? items.filter((item) => item.category === selectCategory)
+  //   : items;
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const filteredItems = items.filter((item) => {
+    const matchCategory = selectCategory
+      ? item.category === selectCategory
+      : true;
+    const matchSearch = item.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+    return matchCategory && matchSearch;
+  });
   // return <div><Message></Message></div>
   return (
     // below is for Alert
@@ -40,6 +51,8 @@ function App() {
       <NavBar
         categories={categories}
         onCategorySelect={(category) => setSelectCategory(category)}
+        searchQuery={searchQuery}
+        onSearch={setSearchQuery}
       ></NavBar>
       <div className="container">
         <Card items={filteredItems}></Card>
