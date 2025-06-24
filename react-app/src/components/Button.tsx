@@ -1,6 +1,5 @@
 // create a button component using bootstrap
 // make the text or label dynamic
-
 import type { ReactNode } from "react";
 
 interface Props {
