@@ -1,8 +1,18 @@
-import type React from "react";
+// import type React from "react";
 
-function ListGroup() {
-  let items = ["New York", "San Fransisco", "Paris", "London"];
+import { useState } from "react";
+
+interface ListGroupProps {
+  items: string[];
+  heading: string;
+  // function
+  onSelectedItem: (item: string) => void;
+}
+function ListGroup({ items, heading, onSelectedItem }: ListGroupProps) {
   // items = [];
+
+  // hook
+  const [selectIndex, setSelectedIndex] = useState(-1);
 
   const message = items.length === 0 ? <p>No item found</p> : null;
   // or a method
@@ -11,8 +21,8 @@ function ListGroup() {
   };
 
   // event handling
-  const handleClick = (event: React.MouseEvent<HTMLElement>) =>
-    console.log(event);
+  // const handleClick = (event: React.MouseEvent<HTMLElement>) =>
+  //   console.log(event);
   return (
     // componenet, so it cannot return more than 1 componenet
     // so solve this problem we can put everything in div
@@ -21,22 +31,26 @@ function ListGroup() {
 
     // another way is an empty
     <>
-      <h1>List Group</h1>
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
         {items.map((items, index) => (
           <li
-            className="list-group-item"
+            className={
+              selectIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
             key={items}
             // onClick={(event) => console.log(items, index, event)}
-            onClick={handleClick}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectedItem(items);
+            }}
           >
             {items}
           </li>
         ))}
-        <li className="list-group-item active" aria-current="true">
-          An active item
-        </li>
       </ul>
     </>
   );
