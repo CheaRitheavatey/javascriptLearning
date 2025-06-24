@@ -2,6 +2,7 @@
 import { Children, useState, type ReactNode } from "react";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import NavBar from "./components/NavBar";
 // import ListGroup from "./components/ListGroup";
 function App() {
   let items = ["New York", "San Fransisco", "Paris", "London"];
@@ -13,13 +14,16 @@ function App() {
   return (
     // below is for Alert
     <div>
-      {alertvisible && (
-        <Alert onClose={() => setAlertVisible(false)}>hello</Alert>
-      )}
-      <Button color="secondary" onClick={() => setAlertVisible(true)}>
-        Dynamic
-      </Button>
+      <NavBar></NavBar>
     </div>
+    // <div>
+    //   {alertvisible && (
+    //     <Alert onClose={() => setAlertVisible(false)}>hello</Alert>
+    //   )}
+    //   <Button color="secondary" onClick={() => setAlertVisible(true)}>
+    //     Dynamic
+    //   </Button>
+    // </div>
 
     // below is for list group
     // <div>
