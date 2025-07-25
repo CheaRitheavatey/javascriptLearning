@@ -7,6 +7,7 @@ import Alert from "./components/Alert";
 import Button from "./components/Button";
 import NavBar from "./components/NavBar";
 import Card from "./components/Card";
+import Intro from "./components/Intro";
 // import ListGroup from "./components/ListGroup";
 function App() {
   const items = [
@@ -54,6 +55,9 @@ function App() {
         searchQuery={searchQuery}
         onSearch={setSearchQuery}
       ></NavBar>
+      <div>
+        <Intro />
+      </div>
       <div className="container">
         <Card items={filteredItems}></Card>
       </div>
