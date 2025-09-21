@@ -2,18 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
+    <style>
+        button {
+            border: none;
+            border-radius: 50%;
+            padding: 5%;
+            margin: 5%;
+            background-color: lightcyan;
+            cursor: pointer;
+            
+        }
+
+        button:hover {
+            background-color: lightblue;
+            cursor: pointer;
+        }
+
+        #score {
+            border: 2px dotted lightblue;
+            background-color: lightyellow;
+            align-items: center;
+            text-align: center;
+        }
+
+        #result {
+            text-align: center;
+            color: palevioletred;
+            font-size: 2rem;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="rps(0)">Rock</button>
-    <button onclick="rps(1)">Paper</button>
-    <button onclick="rps(2)">Scissors</button>
+    <button onclick="rps(0)">✊</button>
+    <button onclick="rps(1)">🖐️</button>
+    <button onclick="rps(2)">✌️</button>
+
+    <div id="score">
+        <p>User Score: <span id="userScore">0</span></p>
+        <p>Robot Score: <span id="robotScore">0</span></p>
+    </div>
+
+    <div id="result"></div>
 
     <script>
         let userScore = 0;
         let robotScore = 0;
 
+        const resultmessage = document.getElementById('result');
+        const userscorespan = document.getElementById('userScore');
+        const robotscorespan = document.getElementById('robotScore');
+        
         function rps(user) {
             const robot = Math.round(Math.random() * 2);
             console.log("robot choose: " + robot)
@@ -22,39 +62,47 @@
                 (user === 0 && robot === 0) ||
                 (user === 1 && robot === 1) ||
                 (user === 2 && robot === 2)) {
-                console.log("it is a tie in this round");
+                resultmessage.innerHTML = "it is a tie this round"
             } else if (
 
                 (user === 0 && robot === 1) ||
                 (user === 1 && robot === 2) ||
                 (user === 2 && robot === 0)) {
                     robotScore+=1;
-                    console.log("robot wins this round");
-            } else {
-                userScore+=1;
-                console.log("user wins this round");
-            }
-
-            console.log("user score: "+userScore);
-            console.log("robot score: "+robotScore);
-
-            // check if someone won
-            if (userScore === 3) {
-                console.log("User wins the game");
-                resetGame();
-            } else if (robotScore === 3) {
-                console.log("Robot wins the game");
-                resetGame();
+                    robotscorespan.innerText = robotScore;
+                    resultmessage.innerHTML = "robot wins this round"
+                } else {
+                    userScore+=1;
+                    userscorespan.innerText = userScore;
+                    resultmessage.innerHTML = "user wins this round"
+                }
+                
+                // console.log("user score: "+userScore);
+                // console.log("robot score: "+robotScore);
+                
+                // check if someone won
+                if (userScore === 3) {
+                    userscorespan.innerText = userScore;
+                    resultmessage.innerHTML = "user wins the game";
+                    // console.log("User wins the game");
+                    // resetGame();
+                } else if (robotScore === 3) {
+                    robotscorespan.innerText = robotScore;
+                    resultmessage.innerHTML = "robot wins the game";
+                    // console.log("Robot wins the game");
+                    // resetGame();
+                }
+                
+                
             }
             
-
-        }
-
-
-        function resetGame() {
-            robotScore = 0;
-            userScore = 0;
-            console.log("game reset.")
+            
+            function resetGame() {
+                robotScore = 0;
+                userScore = 0;
+                robotscorespan.innerText = robotScore;
+                userscorespan.innerText = userScore;
+                resultmessage.innerHTML = "reset game!"
         }
     </script>
     
