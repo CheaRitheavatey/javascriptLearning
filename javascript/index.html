@@ -2,73 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock-Paper-Scissors</title>
-<style>
-    button {
-        border: none;
-        padding: 5%;
-        border-radius: 50%;
-        margin: 1rem;
-        background: lightblue;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: lightcoral;
-    }
-</style>
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Rock Paper Scissor</title>
 </head>
 <body>
-    
-    <h3>Choose Rock Paper or Scissors</h3>
-    <button id= "1" onclick="showResult(1)">✋</button>
-    <button id= "2" onclick="showResult(2)">✌️</button>
-    <button id= "0" onclick="showResult(0)">✊</button>
-
-    <p id="">human score: </p>
-    <p>robot score: </p>
-    <div id="result"></div>
+    <button onclick="rps(0)">Rock</button>
+    <button onclick="rps(1)">Paper</button>
+    <button onclick="rps(2)">Scissors</button>
 
     <script>
-        function robotHand() {
-            const humanScore = 0;
-            const robotScore = 0;
-            const num = Math.round(Math.random() * 2);
-            console.log(num)
-            
-            
+        let userScore = 0;
+        let robotScore = 0;
 
-            if (document.getElementById('0').innerText && num === 0
-            || document.getElementById('1').innerText && num === 1
-            || document.getElementById('2').innerText && num === 2) {
-                return "its a tie";
+        function rps(user) {
+            const robot = Math.round(Math.random() * 2);
+            console.log("robot choose: " + robot)
+        
+            if (
+                (user === 0 && robot === 0) ||
+                (user === 1 && robot === 1) ||
+                (user === 2 && robot === 2)) {
+                console.log("it is a tie in this round");
             } else if (
-                document.getElementById('0').innerText && num === 1
-            || document.getElementById('1').innerText && num === 2
-            || document.getElementById('2').innerText && num === 0) {
-                robotScore++;
+
+                (user === 0 && robot === 1) ||
+                (user === 1 && robot === 2) ||
+                (user === 2 && robot === 0)) {
+                    robotScore+=1;
+                    console.log("robot wins this round");
             } else {
-                humanScore++
+                userScore+=1;
+                console.log("user wins this round");
             }
 
-            console.log(humanScore);
-            console.log(robotScore);
+            console.log("user score: "+userScore);
+            console.log("robot score: "+robotScore);
+
+            // check if someone won
+            if (userScore === 3) {
+                console.log("User wins the game");
+                resetGame();
+            } else if (robotScore === 3) {
+                console.log("Robot wins the game");
+                resetGame();
+            }
+            
 
         }
-        
-        function showResult(buttonIndex) {
-            const robot = robotHand();
-            document.getElementById('result').innerText = `You choose ${buttonIndex} and robot choose: ${robot}`
-        }
 
-        <!-- console.log(num) -->
 
-        if (30 >= 18) {
-            console.log("eligible")
-        } else {
-            console.log("not eligible")
+        function resetGame() {
+            robotScore = 0;
+            userScore = 0;
+            console.log("game reset.")
         }
     </script>
+    
 </body>
 </html>
